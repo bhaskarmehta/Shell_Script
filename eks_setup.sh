@@ -8,7 +8,7 @@ sudo ./aws/install
 curl -O https://s3.us-west-2.amazonaws.com/amazon-eks/1.26.4/2023-05-11/bin/linux/amd64/kubectl
 chmod +x ./kubectl
 mkdir -p $HOME/bin && cp ./kubectl $HOME/bin/kubectl && export PATH=$PATH:$HOME/bin
-kubectl version
+kubectl version --client
 
 curl -Lo aws-iam-authenticator https://github.com/kubernetes-sigs/aws-iam-authenticator/releases/download/v0.5.9/aws-iam-authenticator_0.5.9_linux_amd64
 chmod +x ./aws-iam-authenticator
@@ -21,6 +21,6 @@ curl --silent --location "https://github.com/weaveworks/eksctl/releases/latest/d
 sudo mv /tmp/eksctl /usr/local/bin
 export PATH=$PATH:/usr/local/bin
 echo 'export PATH=$PATH:/usr/local/bin' >> ~/.bashrc
-eksctl version --client
+eksctl version
 
 eksctl create cluster  --name mycluster --version 1.26 --nodegroup-name mygroup --node-type t2.micro --nodes 2 --region us-east-1 --zones=us-east-1a,us-east-1b,us-east-1d
